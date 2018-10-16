@@ -3,7 +3,7 @@ node('nodejs') {
     openshiftBuild(buildConfig: 'nodejs-ex', showBuildLogs: 'true')
   }
   stage('verify build') {
-    sh 'node -v'
+    sh 'node -v '
     openshiftVerifyBuild(buildConfig: 'nodejs-ex')
   }
   stage('deploy') {
