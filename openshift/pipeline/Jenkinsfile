@@ -1,4 +1,4 @@
-node('nodejs-github') {
+node('nodejs') {
   stage('build') {
     openshiftBuild(buildConfig: 'nodejs-ex', showBuildLogs: 'true')
   }
