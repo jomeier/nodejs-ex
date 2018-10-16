@@ -1,6 +1,15 @@
 node('nodejs') {
-  stage 'build'
-  openshiftBuild(buildConfig: 'nodejs-ex', showBuildLogs: 'true')
-  stage 'deploy'
-  openshiftDeploy(deploymentConfig: 'nodejs-ex')
+  stage('build') {
+    openshiftBuild(buildConfig: 'nodejs', showBuildLogs: 'true')
+  }
+  stage('verify build') {
+    sh 'node -v'
+    openshiftVerifyBuild(buildConfig: 'nodejs')
+  }
+  stage('deploy') {
+    openshiftDeploy(deploymentConfig: 'nodejs')
+  }
+  stage('verify deploy') {
+    openshiftVerifyDeployment(deploymentConfig: 'nodejs')
+  }
 }
